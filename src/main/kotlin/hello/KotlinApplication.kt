@@ -108,34 +108,38 @@ class KotlinApplication {
                 }
             }
         } else if (abs(diffY) > abs(diffX)) {
-            if (diffY > 2) {
+            if (diffY > 1) {
                 return when (direction) {
                     "S" -> Action.Move.action
                     "E" -> Action.Right.action
                     else -> Action.Left.action
 
                 }
-            } else if (diffY < -2) {
+            } else if (diffY < -1) {
                 return when (direction) {
                     "N" -> Action.Move.action
                     "E" -> Action.Left.action
                     else -> Action.Right.action
                 }
+            } else {
+                return Action.Move.action
             }
         } else if (abs(diffX) > abs(diffY)) {
-            if (diffX > 2) {
+            if (diffX > 1) {
                 return when (direction) {
                     "E" -> Action.Move.action
                     "N" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else if (diffX < -2) {
+            } else if (diffX < -1) {
                 return when (direction) {
                     "W" -> Action.Move.action
                     "N" -> Action.Left.action
                     else -> Action.Right.action
 
                 }
+            } else {
+                return Action.Move.action
             }
         } else {
             return Action.Move.action
