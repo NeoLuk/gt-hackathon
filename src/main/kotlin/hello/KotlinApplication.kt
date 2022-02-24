@@ -62,14 +62,14 @@ class KotlinApplication {
 
                 }
             }
-            if (diffY in 1..3) {
+            if (diffY in 1..2) {
                 return when (direction) {
                     "S" -> Action.Attack.action
                     "E" -> Action.Right.action
                     else -> Action.Left.action
 
                 }
-            } else if (diffY in -3..-1) {
+            } else if (diffY in -2..-1) {
                 return when (direction) {
 
                     "N" -> Action.Attack.action
@@ -92,13 +92,13 @@ class KotlinApplication {
 
                 }
             }
-            if (diffX in 1..3) {
+            if (diffX in 1..2) {
                 return when (direction) {
                     "E" -> Action.Attack.action
                     "N" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else if (diffX in -3..-1) {
+            } else if (diffX in -2..-1) {
                 return when (direction) {
                     "W" -> Action.Attack.action
                     "N" -> Action.Left.action
