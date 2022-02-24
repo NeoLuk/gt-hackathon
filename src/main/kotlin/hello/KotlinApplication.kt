@@ -25,15 +25,101 @@ class KotlinApplication {
                 val height = arenaUpdate.arena.dims.last()
 
                 val mySelf: PlayerState = arenaUpdate.arena.state[selfId]!!
-                println(mySelf.direction)
-//                for (state in arenaUpdate.arena.state.values) {
-//
-//                }
-                Action.Attack.action
+
+                val highestPlayer = arenaUpdate.arena.state.toList().maxByOrNull {
+                    it.second.score
+                }!!
+
+                if (selfId == highestPlayer.first) {
+                    Action.Attack.action
+                } else {
+                    findHighestPlayer(highestPlayer.second, mySelf)
+                }
             }
         }
     }
 
+    fun findHighestPlayer(target: PlayerState, mySelf: PlayerState): Mono<ServerResponse> {
+        val diffX = target.x - mySelf.x
+        val diffY = target.y - mySelf.y
+        val direction = mySelf.direction
+
+        if (diffX == 0) {
+            if (diffY > 3) {
+                return when (direction) {
+                    "N" -> Action.Move.action
+                    "E" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            } else if (diffY < -3) {
+                return when (direction) {
+                    "S" -> Action.Move.action
+                    "E" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            }
+            return if (diffY <= 3) {
+                when (direction) {
+                    "S" -> Action.Attack.action
+                    "E" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            } else {
+                when (direction) {
+                    "N" -> Action.Attack.action
+                    "E" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            }
+        } else if (diffY == 0) {
+            if (diffX > 3) {
+                return when (direction) {
+                    "W" -> Action.Move.action
+                    "N" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            } else if (diffX < -3) {
+                return when (direction) {
+                    "E" -> Action.Move.action
+                    "N" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            }
+            return if (diffX <= 3) {
+                when (direction) {
+                    "E" -> Action.Attack.action
+                    "N" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            } else {
+                when (direction) {
+                    "W" -> Action.Attack.action
+                    "N" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            }
+        }
+        return Action.Attack.action
+    }
+
+
+    fun searchEnemy(direction: String) {
+        when (direction) {
+            "N" -> {
+
+            }
+            "E" -> {
+
+            }
+            "S" -> {
+
+            }
+            "W" -> {
+
+            }
+
+        }
+    }
 }
 
 fun main(args: Array<String>) {
