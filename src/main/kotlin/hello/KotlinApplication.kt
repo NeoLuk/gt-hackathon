@@ -25,7 +25,7 @@ class KotlinApplication {
                 val width = arenaUpdate.arena.dims.first()
                 val height = arenaUpdate.arena.dims.last()
                 arenaUpdate.arena.state
-                ServerResponse.ok().body(Mono.just(listOf("T")))
+                ServerResponse.ok().body(Mono.just("T"))
             }
         }
     }
