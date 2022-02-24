@@ -100,6 +100,34 @@ class KotlinApplication {
                     else -> Action.Right.action
                 }
             }
+        } else if (diffY > diffX) {
+            if (diffY > 3) {
+                return when (direction) {
+                    "N" -> Action.Move.action
+                    "E" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            } else if (diffY < -3) {
+                return when (direction) {
+                    "S" -> Action.Move.action
+                    "E" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            }
+        } else {
+            if (diffX > 3) {
+                return when (direction) {
+                    "W" -> Action.Move.action
+                    "N" -> Action.Left.action
+                    else -> Action.Right.action
+                }
+            } else if (diffX < -3) {
+                return when (direction) {
+                    "E" -> Action.Move.action
+                    "N" -> Action.Right.action
+                    else -> Action.Left.action
+                }
+            }
         }
         return Action.Attack.action
     }
