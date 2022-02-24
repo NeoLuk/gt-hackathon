@@ -48,13 +48,13 @@ class KotlinApplication {
 
         println("diffX = $diffX , diffY = $diffY")
         if (diffX == 0) {
-            if (diffY > 3) {
+            if (diffY > 2) {
                 return when (direction) {
                     "S" -> Action.Move.action
                     "E" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else if (diffY < -3) {
+            } else if (diffY < -2) {
                 return when (direction) {
                     "N" -> Action.Move.action
                     "E" -> Action.Left.action
@@ -78,13 +78,13 @@ class KotlinApplication {
                 }
             }
         } else if (diffY == 0) {
-            if (diffX > 3) {
+            if (diffX > 2) {
                 return when (direction) {
                     "E" -> Action.Move.action
                     "N" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else if (diffX < -3) {
+            } else if (diffX < -2) {
                 return when (direction) {
                     "W" -> Action.Move.action
                     "N" -> Action.Left.action
@@ -108,14 +108,14 @@ class KotlinApplication {
                 }
             }
         } else if (abs(diffY) > abs(diffX)) {
-            if (diffY > 3) {
+            if (diffY > 2) {
                 return when (direction) {
                     "S" -> Action.Move.action
                     "E" -> Action.Right.action
                     else -> Action.Left.action
 
                 }
-            } else if (diffY < -3) {
+            } else if (diffY < -2) {
                 return when (direction) {
                     "N" -> Action.Move.action
                     "E" -> Action.Left.action
@@ -123,13 +123,13 @@ class KotlinApplication {
                 }
             }
         } else if (abs(diffX) > abs(diffY)) {
-            if (diffX > 3) {
+            if (diffX > 2) {
                 return when (direction) {
                     "E" -> Action.Move.action
                     "N" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else if (diffX < -3) {
+            } else if (diffX < -2) {
                 return when (direction) {
                     "W" -> Action.Move.action
                     "N" -> Action.Left.action
