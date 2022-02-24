@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
+import kotlin.math.abs
 
 @SpringBootApplication
 class KotlinApplication {
@@ -100,7 +101,7 @@ class KotlinApplication {
                     else -> Action.Right.action
                 }
             }
-        } else if (diffY > diffX) {
+        } else if (abs(diffX) > abs(diffX)) {
             if (diffY > 3) {
                 return when (direction) {
                     "N" -> Action.Move.action
