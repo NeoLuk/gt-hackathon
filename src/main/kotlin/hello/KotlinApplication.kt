@@ -20,19 +20,31 @@ class KotlinApplication {
 
         POST("/**", accept(APPLICATION_JSON)) { request ->
             request.bodyToMono(ArenaUpdate::class.java).flatMap { arenaUpdate ->
-                println(arenaUpdate)
-                val myself = arenaUpdate._links.self.href
+                val selfId = arenaUpdate._links.self.href
                 val width = arenaUpdate.arena.dims.first()
                 val height = arenaUpdate.arena.dims.last()
-                arenaUpdate.arena.state
-                ServerResponse.ok().body(Mono.just("T"))
+
+                val mySelf: PlayerState = arenaUpdate.arena.state[selfId]!!
+                println(mySelf.direction)
+//                for (state in arenaUpdate.arena.state.values) {
+//
+//                }
+                Action.Attack.action
             }
         }
     }
+
 }
 
 fun main(args: Array<String>) {
     runApplication<KotlinApplication>(*args)
+}
+
+enum class Action(val action: Mono<ServerResponse>) {
+    Left(action = ServerResponse.ok().body(Mono.just("L"))),
+    Right(action = ServerResponse.ok().body(Mono.just("R"))),
+    Move(action = ServerResponse.ok().body(Mono.just("F"))),
+    Attack(action = ServerResponse.ok().body(Mono.just("T")))
 }
 
 data class ArenaUpdate(val _links: Links, val arena: Arena)
