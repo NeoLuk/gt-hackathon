@@ -105,7 +105,7 @@ class KotlinApplication {
 
                 }
             }
-        } else if (abs(diffX) > abs(diffX)) {
+        } else if (abs(diffY) > abs(diffX)) {
             if (diffY > 3) {
                 return when (direction) {
                     "S" -> Action.Move.action
@@ -137,25 +137,6 @@ class KotlinApplication {
             }
         }
         return Action.Attack.action
-    }
-
-
-    fun searchEnemy(direction: String) {
-        when (direction) {
-            "N" -> {
-
-            }
-            "E" -> {
-
-            }
-            "S" -> {
-
-            }
-            "W" -> {
-
-            }
-
-        }
     }
 }
 
