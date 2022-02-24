@@ -21,7 +21,11 @@ class KotlinApplication {
         POST("/**", accept(APPLICATION_JSON)) { request ->
             request.bodyToMono(ArenaUpdate::class.java).flatMap { arenaUpdate ->
                 println(arenaUpdate)
-                ServerResponse.ok().body(Mono.just(listOf("F", "R", "L", "T").random()))
+                val myself = arenaUpdate._links.self.href
+                val width = arenaUpdate.arena.dims.first()
+                val height = arenaUpdate.arena.dims.last()
+                arenaUpdate.arena.state
+                ServerResponse.ok().body(Mono.just(listOf("T")))
             }
         }
     }
