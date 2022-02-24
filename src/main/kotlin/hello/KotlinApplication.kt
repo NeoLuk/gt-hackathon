@@ -122,7 +122,7 @@ class KotlinApplication {
                     else -> Action.Right.action
                 }
             }
-        } else {
+        } else if (abs(diffX) > abs(diffY)) {
             if (diffX > 3) {
                 return when (direction) {
                     "E" -> Action.Move.action
@@ -137,6 +137,8 @@ class KotlinApplication {
 
                 }
             }
+        } else {
+            return Action.Move.action
         }
         println("attack?")
         return Action.Attack.action
