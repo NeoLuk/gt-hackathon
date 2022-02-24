@@ -29,10 +29,11 @@ class KotlinApplication {
                 val highestPlayer = arenaUpdate.arena.state.toList().maxByOrNull {
                     it.second.score
                 }!!
-
                 if (selfId == highestPlayer.first) {
+                    println("isHighest")
                     Action.Attack.action
                 } else {
+                    println("findTarget")
                     findHighestPlayer(highestPlayer.second, mySelf)
                 }
             }
@@ -44,6 +45,7 @@ class KotlinApplication {
         val diffY = target.y - mySelf.y
         val direction = mySelf.direction
 
+        println("diffX = $diffX , diffY = $diffY")
         if (diffX == 0) {
             if (diffY > 3) {
                 return when (direction) {
@@ -58,14 +60,14 @@ class KotlinApplication {
                     else -> Action.Left.action
                 }
             }
-            return if (diffY <= 3) {
-                when (direction) {
+            if (diffY in 1..3) {
+                return when (direction) {
                     "S" -> Action.Attack.action
                     "E" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else {
-                when (direction) {
+            } else if (diffY in -3..-1) {
+                return when (direction) {
                     "N" -> Action.Attack.action
                     "E" -> Action.Left.action
                     else -> Action.Right.action
@@ -85,14 +87,14 @@ class KotlinApplication {
                     else -> Action.Left.action
                 }
             }
-            return if (diffX <= 3) {
-                when (direction) {
+            if (diffX in 1..3) {
+                return when (direction) {
                     "E" -> Action.Attack.action
                     "N" -> Action.Right.action
                     else -> Action.Left.action
                 }
-            } else {
-                when (direction) {
+            } else if (diffX in -3..-1) {
+                return when (direction) {
                     "W" -> Action.Attack.action
                     "N" -> Action.Left.action
                     else -> Action.Right.action
