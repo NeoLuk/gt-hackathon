@@ -136,6 +136,7 @@ class KotlinApplication {
                 }
             }
         }
+        println("attack?")
         return Action.Attack.action
     }
 }
